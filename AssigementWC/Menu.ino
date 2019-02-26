@@ -1,9 +1,9 @@
 void Input(){
   buttonInput();
-  switch (state){
+  switch (menuState){
     case main:{
       if (button1){
-        state = settings;
+        menuState = settings;
       }
       if (button3){
         spray();
@@ -16,12 +16,12 @@ void Input(){
           switch (menuPointer) {
             case 0:
               //spray delay
-              state = delaySettings;
+              menuState = delaySettings;
               break;
             case 1:
               // reset NoS
               NoS = 2400;
-              state = main;
+              menuState = main;
               break;
             default:
               break;
@@ -32,7 +32,7 @@ void Input(){
         menuPointer = ((menuPointer + menuSize + 1) % menuSize);
       //Back
       if (button3)
-        state = main;
+        menuState = main;
         //manual spray
       break;
     }
@@ -41,7 +41,7 @@ void Input(){
         sprayDelay = ((sprayDelay - minSprayDelay + maxSprayDelay + 1000) % (maxSprayDelay)) + minSprayDelay;
       }
       if (button3){
-        state = settings;
+        menuState = settings;
       }
       break;
     }
@@ -52,7 +52,7 @@ void Input(){
     
 void Screen(){
   lcd.clear();
-  switch (state){
+  switch (menuState){
     case main:{
         lcd.setCursor(0,0);
         lcd.print("->");
@@ -79,6 +79,7 @@ void Screen(){
         lcd.print("Delay: ");
         lcd.print(sprayDelay / 1000);
         lcd.print(" sec");
+        lcd.setCursor(0,1);
        break;
     }
   }

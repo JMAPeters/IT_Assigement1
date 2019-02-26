@@ -11,9 +11,9 @@ int getDistance(){
 
 bool magnetON(){
   if (digitalRead(magnetPin) == HIGH)
-    return true;
-  else
     return false;
+  else
+    return true;
 }
 
 void getTemp(){
@@ -27,7 +27,7 @@ int getLightValue(){
 
 void spray(){
   //digitalWrite(motorPin, HIGH);
-  //Timer tussen zetten
+  //delay(50);
   //digitalWrite(motorPin, LOW);
   NoS--;
 }
